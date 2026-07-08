@@ -10,8 +10,6 @@ export const Route = createFileRoute("/dashboard")({
 
 const nav = [
   { to: "/dashboard", label: "Overview", icon: LayoutDashboard, exact: true },
-  { to: "/dashboard/courses", label: "My Courses", icon: BookOpen },
-  { to: "/dashboard/tests", label: "My Tests", icon: ClipboardCheck },
   { to: "/dashboard/notifications", label: "Notifications", icon: Bell },
   { to: "/dashboard/profile", label: "Profile", icon: User },
 ];

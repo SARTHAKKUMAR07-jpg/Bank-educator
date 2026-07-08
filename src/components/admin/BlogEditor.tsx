@@ -255,11 +255,13 @@ export function BlogEditor({ blogId, onClose }: BlogEditorProps) {
                 <Select value={category} onValueChange={setCategory}>
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Banking">Banking</SelectItem>
-                    <SelectItem value="Exam Analysis">Exam Analysis</SelectItem>
-                    <SelectItem value="Guidance">Guidance</SelectItem>
-                    <SelectItem value="Study Plan">Study Plan</SelectItem>
-                    <SelectItem value="Current Affairs">Current Affairs</SelectItem>
+                    <SelectItem value="RBI Updates">RBI Updates</SelectItem>
+                    <SelectItem value="IBPS Updates">IBPS Updates</SelectItem>
+                    <SelectItem value="SBI News">SBI News</SelectItem>
+                    <SelectItem value="NABARD News">NABARD News</SelectItem>
+                    <SelectItem value="Government Jobs">Government Jobs</SelectItem>
+                    <SelectItem value="Editorial Picks">Editorial Picks</SelectItem>
+                    <SelectItem value="Trending News">Trending News</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

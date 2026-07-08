@@ -7,11 +7,11 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-6 py-14 grid gap-10 md:grid-cols-4">
         <div>
           <Link to="/" className="flex items-center gap-2">
-            <Landmark className="h-7 w-7 text-gold" />
-            <span className="font-display text-xl">Bank Educator</span>
+            <img src="/logo.svg" alt="Bank Educator" className="h-7 w-7" />
+            <span className="font-display text-xl font-bold">Bank Educator</span>
           </Link>
           <p className="mt-4 text-sm text-white/70 leading-relaxed">
-            India's premium platform for Bank & Insurance exam preparation. Trusted by 5 lakh+ aspirants.
+            India's premium Banking News Portal. Stay updated with the latest banking sector news and RBI updates.
           </p>
           <div className="mt-5 flex gap-3">
             {[Twitter, Youtube, Instagram, Linkedin].map((Icon, i) => (
@@ -22,9 +22,8 @@ export function SiteFooter() {
           </div>
         </div>
         {[
-          { h: "Learn", links: [["Courses","/courses"],["Mock Tests","/mock-tests"],["Free Quizzes","/quizzes"],["Current Affairs","/current-affairs"]] },
-          { h: "Company", links: [["About","/about"],["Blog","/blog"],["Contact","/contact"],["Careers","/about#careers"]] },
-          { h: "Support", links: [["Help Center","/contact"],["Refund Policy","/about#refund"],["Terms","/about#terms"],["Privacy","/about#privacy"]] },
+          { h: "Explore", links: [["News","/news"],["Blog","/blog"],["About","/about"]] },
+          { h: "Support", links: [["Terms & Conditions","/about#terms"],["Privacy Policy","/about#privacy"]] },
         ].map((col) => (
           <div key={col.h}>
             <h4 className="font-display text-lg text-gold">{col.h}</h4>

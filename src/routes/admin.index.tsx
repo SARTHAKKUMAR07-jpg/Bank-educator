@@ -1,16 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Card } from "@/components/ui/card";
-import { courses, mockTests, blogPosts, currentAffairs } from "@/lib/mock-data";
-import { Users, IndianRupee, GraduationCap, ClipboardCheck } from "lucide-react";
+import { blogPosts, currentAffairs } from "@/lib/mock-data";
+import { Users, IndianRupee, FileText } from "lucide-react";
 
 export const Route = createFileRoute("/admin/")({ component: AdminHome });
 
 function AdminHome() {
   const stats = [
-    { icon: Users, l: "Total Students", v: "5,04,832" },
+    { icon: Users, l: "Total Readers", v: "5,04,832" },
     { icon: IndianRupee, l: "Revenue (MTD)", v: "₹42.5L" },
-    { icon: GraduationCap, l: "Active Courses", v: courses.length },
-    { icon: ClipboardCheck, l: "Mock Tests", v: mockTests.length },
+    { icon: FileText, l: "News Articles", v: currentAffairs.length },
   ];
   return (
     <div>

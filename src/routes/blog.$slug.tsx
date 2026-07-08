@@ -96,9 +96,10 @@ function BlogPost() {
   return (
     <MarketingShell>
       <article className="bg-background">
-        {/* Header */}
-        <header className="pt-24 pb-12 px-6 border-b bg-muted/20">
-          <div className="max-w-3xl mx-auto">
+        <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col lg:flex-row gap-12 pt-24">
+          
+          {/* Main Content (Left - ~68%) */}
+          <div className="lg:w-[68%]">
             <Link to="/blog" className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground mb-8 transition-colors">
               <ArrowLeft className="mr-2 h-4 w-4" /> Back to all articles
             </Link>
@@ -112,9 +113,11 @@ function BlogPost() {
               {post.excerpt}
             </p>
             
-            <div className="mt-8 flex items-center gap-4 text-sm font-medium text-foreground/80 pt-8 border-t">
+            <div className="mt-8 mb-10 flex items-center gap-4 text-sm font-medium text-foreground/80 py-6 border-y">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-gold to-orange-400 shadow-inner" />
+                <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-primary to-blue-400 shadow-inner grid place-items-center text-white font-bold text-lg">
+                  {post.author.charAt(0)}
+                </div>
                 <div>
                   <div className="text-foreground">{post.author}</div>
                   <div className="text-muted-foreground font-normal">{new Date(post.publishedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</div>
@@ -123,57 +126,79 @@ function BlogPost() {
               <div className="w-px h-10 bg-border mx-2"></div>
               <span className="flex items-center gap-1.5"><Clock className="h-4 w-4" /> {post.readingTime} min read</span>
             </div>
-          </div>
-        </header>
 
-        {/* Cover & Content */}
-        <div className="max-w-4xl mx-auto px-6 py-12">
-          <div className="-mt-24 mb-16 shadow-xl rounded-2xl overflow-hidden bg-background border border-border/50">
-            <img src={post.cover} alt={post.title} className="w-full aspect-[2/1] object-cover" />
-          </div>
-          
-          <div className="max-w-3xl mx-auto">
-            <MarkdownRenderer content={post.content} />
+            <div className="mb-12 shadow-md rounded-2xl overflow-hidden bg-background border border-border/50">
+              <img src={post.cover} alt={post.title} className="w-full aspect-[2/1] object-cover" />
+            </div>
             
-            {post.tags.length > 0 && (
-              <div className="mt-16 pt-8 border-t flex flex-wrap gap-2">
-                <span className="text-sm font-medium text-muted-foreground mr-2 flex items-center">Tags:</span>
-                {post.tags.map(t => (
-                  <Badge key={t} variant="secondary" className="bg-muted/50 text-muted-foreground">{t}</Badge>
+            <div className="max-w-none">
+              <MarkdownRenderer content={post.content} />
+              
+              {post.tags.length > 0 && (
+                <div className="mt-16 pt-8 border-t flex flex-wrap gap-2">
+                  <span className="text-sm font-medium text-muted-foreground mr-2 flex items-center">Tags:</span>
+                  {post.tags.map(t => (
+                    <Badge key={t} variant="secondary" className="bg-muted/50 text-muted-foreground">{t}</Badge>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Sidebar (Right - ~32%) */}
+          <aside className="lg:w-[32%] space-y-10 pt-16 lg:pt-0">
+            
+            <div className="bg-muted/30 rounded-2xl p-6 border border-border/50">
+              <h3 className="font-display text-xl font-bold mb-6 flex items-center gap-2">
+                <span className="w-2 h-6 bg-primary rounded-full"></span> Latest News
+              </h3>
+              <div className="space-y-6">
+                {allBlogs.filter(b => b.status === "published" && b.id !== post.id).slice(0, 3).map(b => (
+                  <Link key={b.id} to="/blog/$slug" params={{ slug: b.slug }} className="group flex gap-4 items-start">
+                    <img src={b.cover} alt={b.title} className="w-20 h-20 rounded-lg object-cover group-hover:opacity-80 transition-opacity" />
+                    <div>
+                      <h4 className="font-bold text-sm line-clamp-2 group-hover:text-primary transition-colors">{b.title}</h4>
+                      <p className="text-xs text-muted-foreground mt-2">{new Date(b.publishedAt).toLocaleDateString()}</p>
+                    </div>
+                  </Link>
                 ))}
               </div>
-            )}
-          </div>
+            </div>
+
+            <div className="bg-muted/30 rounded-2xl p-6 border border-border/50">
+              <h3 className="font-display text-xl font-bold mb-6 flex items-center gap-2">
+                <span className="w-2 h-6 bg-gold rounded-full"></span> Trending News
+              </h3>
+              <div className="space-y-6">
+                {allBlogs.filter(b => b.status === "published" && b.id !== post.id).slice(3, 6).map(b => (
+                  <Link key={b.id} to="/blog/$slug" params={{ slug: b.slug }} className="group flex gap-4 items-start">
+                    <img src={b.cover} alt={b.title} className="w-20 h-20 rounded-lg object-cover group-hover:opacity-80 transition-opacity" />
+                    <div>
+                      <h4 className="font-bold text-sm line-clamp-2 group-hover:text-primary transition-colors">{b.title}</h4>
+                      <p className="text-xs text-muted-foreground mt-2">{new Date(b.publishedAt).toLocaleDateString()}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-muted/30 rounded-2xl p-6 border border-border/50">
+              <h3 className="font-display text-xl font-bold mb-6 flex items-center gap-2">
+                <span className="w-2 h-6 bg-primary rounded-full"></span> Popular Categories
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {["RBI Updates", "SBI News", "IBPS Updates", "Government Jobs", "Editorial Picks", "Trending News"].map(cat => (
+                  <Badge key={cat} variant="outline" className="hover:bg-primary hover:text-white cursor-pointer transition-colors py-1.5 px-3">
+                    {cat}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+          </aside>
         </div>
       </article>
 
-      {/* Related Posts */}
-      {relatedPosts.length > 0 && (
-        <section className="border-t bg-muted/10 py-24 px-6">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="font-display text-3xl font-bold mb-10">Related Articles</h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {relatedPosts.map(b => (
-                <Link key={b.id} to="/blog/$slug" params={{ slug: b.slug }} className="group flex flex-col h-full">
-                  <Card className="overflow-hidden h-full py-0 border-0 shadow-sm hover:shadow-lg transition-all flex flex-col bg-background">
-                    <div className="aspect-[16/9] overflow-hidden">
-                      <img src={b.cover} alt={b.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                    </div>
-                    <CardContent className="p-6 flex-1 flex flex-col">
-                      <h3 className="font-display text-xl font-bold line-clamp-2 group-hover:text-primary transition-colors">{b.title}</h3>
-                      <p className="mt-3 text-muted-foreground line-clamp-2 text-sm flex-1">{b.excerpt}</p>
-                      <div className="mt-6 flex items-center justify-between text-xs text-muted-foreground font-medium">
-                        <span>{new Date(b.publishedAt).toLocaleDateString()}</span>
-                        <span>{b.readingTime} min read</span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
     </MarketingShell>
   );
 }

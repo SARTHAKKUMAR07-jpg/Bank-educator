@@ -14,8 +14,6 @@ export const Route = createFileRoute("/admin")({ component: AdminLayout });
 const nav = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { to: "/admin/blog", label: "Blog Management", icon: FileText },
-  { to: "/admin/courses", label: "Courses", icon: BookOpen },
-  { to: "/admin/tests", label: "Mock Tests", icon: ClipboardCheck },
   { to: "/admin/current-affairs", label: "Current Affairs", icon: Newspaper },
   { to: "/admin/students", label: "Users & Students", icon: Users },
   { to: "/admin/notifications", label: "Notifications", icon: Bell },

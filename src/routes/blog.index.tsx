@@ -2,12 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { MarketingShell } from "@/components/marketing-shell";
 import { useBlogs, cmsStore } from "@/lib/cms-store";
 import { useAuth } from "@/lib/auth";
-import { BlogEditor } from "@/components/admin/BlogEditor";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, ChevronLeft, ChevronRight, Clock, User, ArrowRight, Edit, Trash2, Plus } from "lucide-react";
+import { Search, ChevronLeft, ChevronRight, Clock, User, ArrowRight } from "lucide-react";
 import { useState, useMemo } from "react";
 import { toast } from "sonner";
 
@@ -24,25 +23,6 @@ const POSTS_PER_PAGE = 6;
 function BlogList() {
   const allBlogs = useBlogs();
   const { user } = useAuth();
-  
-  const [isEditorOpen, setIsEditorOpen] = useState(false);
-  const [editingBlogId, setEditingBlogId] = useState<string | null>(null);
-
-  const handleEdit = (e: React.MouseEvent, id: string) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setEditingBlogId(id);
-    setIsEditorOpen(true);
-  };
-
-  const handleDelete = (e: React.MouseEvent, id: string) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (confirm("Are you sure you want to move this blog to trash?")) {
-      cmsStore.updateBlog(id, { status: "trashed" });
-      toast.success("Blog moved to trash");
-    }
-  };
   
   // Only show published blogs, not scheduled for the future
   const publishedBlogs = useMemo(() => {
@@ -136,12 +116,6 @@ function BlogList() {
                 onChange={e => { setSearch(e.target.value); setPage(1); }}
               />
             </div>
-            <Button 
-              onClick={() => { setEditingBlogId(null); setIsEditorOpen(true); }}
-              className="bg-blue-600 hover:bg-blue-700 text-white rounded-full whitespace-nowrap shadow-sm"
-            >
-              <Plus className="h-4 w-4 mr-2" /> Add Blog
-            </Button>
           </div>
         </div>
 
@@ -158,14 +132,6 @@ function BlogList() {
                   <img src={b.cover} alt={b.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute top-3 left-3 flex gap-2">
                     <Badge className="bg-white/90 text-black hover:bg-white backdrop-blur-sm">{b.category}</Badge>
-                  </div>
-                  <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Button size="icon" variant="secondary" className="h-8 w-8 rounded-full bg-white/90 hover:bg-white text-blue-600 shadow-sm" onClick={(e) => handleEdit(e, b.id)}>
-                      <Edit className="h-4 w-4" />
-                    </Button>
-                    <Button size="icon" variant="secondary" className="h-8 w-8 rounded-full bg-white/90 hover:bg-white text-destructive shadow-sm" onClick={(e) => handleDelete(e, b.id)}>
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
                   </div>
                 </div>
                 <CardContent className="p-6 flex-1 flex flex-col">
@@ -208,10 +174,6 @@ function BlogList() {
           </div>
         )}
 
-
-        {isEditorOpen && (
-          <BlogEditor blogId={editingBlogId} onClose={() => setIsEditorOpen(false)} />
-        )}
       </section>
     </MarketingShell>
   );

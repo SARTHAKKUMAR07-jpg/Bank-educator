@@ -17,26 +17,16 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as QuizzesIndexRouteImport } from './routes/quizzes.index'
-import { Route as MockTestsIndexRouteImport } from './routes/mock-tests.index'
+import { Route as NewsIndexRouteImport } from './routes/news.index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
-import { Route as CoursesIndexRouteImport } from './routes/courses.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
-import { Route as QuizzesSlugRouteImport } from './routes/quizzes.$slug'
-import { Route as MockTestsSlugRouteImport } from './routes/mock-tests.$slug'
-import { Route as DashboardTestsRouteImport } from './routes/dashboard.tests'
 import { Route as DashboardProfileRouteImport } from './routes/dashboard.profile'
 import { Route as DashboardNotificationsRouteImport } from './routes/dashboard.notifications'
-import { Route as DashboardCoursesRouteImport } from './routes/dashboard.courses'
-import { Route as CoursesSlugRouteImport } from './routes/courses.$slug'
-import { Route as CheckoutCourseSlugRouteImport } from './routes/checkout.$courseSlug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
-import { Route as AdminTestsRouteImport } from './routes/admin.tests'
 import { Route as AdminStudentsRouteImport } from './routes/admin.students'
 import { Route as AdminNotificationsRouteImport } from './routes/admin.notifications'
 import { Route as AdminCurrentAffairsRouteImport } from './routes/admin.current-affairs'
-import { Route as AdminCoursesRouteImport } from './routes/admin.courses'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 
 const SignupRoute = SignupRouteImport.update({
@@ -79,25 +69,15 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const QuizzesIndexRoute = QuizzesIndexRouteImport.update({
-  id: '/quizzes/',
-  path: '/quizzes/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MockTestsIndexRoute = MockTestsIndexRouteImport.update({
-  id: '/mock-tests/',
-  path: '/mock-tests/',
+const NewsIndexRoute = NewsIndexRouteImport.update({
+  id: '/news/',
+  path: '/news/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => DashboardRoute,
-} as any)
-const CoursesIndexRoute = CoursesIndexRouteImport.update({
-  id: '/courses/',
-  path: '/courses/',
-  getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
@@ -109,21 +89,6 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
-const QuizzesSlugRoute = QuizzesSlugRouteImport.update({
-  id: '/quizzes/$slug',
-  path: '/quizzes/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MockTestsSlugRoute = MockTestsSlugRouteImport.update({
-  id: '/mock-tests/$slug',
-  path: '/mock-tests/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DashboardTestsRoute = DashboardTestsRouteImport.update({
-  id: '/tests',
-  path: '/tests',
-  getParentRoute: () => DashboardRoute,
-} as any)
 const DashboardProfileRoute = DashboardProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
@@ -134,30 +99,10 @@ const DashboardNotificationsRoute = DashboardNotificationsRouteImport.update({
   path: '/notifications',
   getParentRoute: () => DashboardRoute,
 } as any)
-const DashboardCoursesRoute = DashboardCoursesRouteImport.update({
-  id: '/courses',
-  path: '/courses',
-  getParentRoute: () => DashboardRoute,
-} as any)
-const CoursesSlugRoute = CoursesSlugRouteImport.update({
-  id: '/courses/$slug',
-  path: '/courses/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CheckoutCourseSlugRoute = CheckoutCourseSlugRouteImport.update({
-  id: '/checkout/$courseSlug',
-  path: '/checkout/$courseSlug',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/blog/$slug',
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
-} as any)
-const AdminTestsRoute = AdminTestsRouteImport.update({
-  id: '/tests',
-  path: '/tests',
-  getParentRoute: () => AdminRoute,
 } as any)
 const AdminStudentsRoute = AdminStudentsRouteImport.update({
   id: '/students',
@@ -172,11 +117,6 @@ const AdminNotificationsRoute = AdminNotificationsRouteImport.update({
 const AdminCurrentAffairsRoute = AdminCurrentAffairsRouteImport.update({
   id: '/current-affairs',
   path: '/current-affairs',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminCoursesRoute = AdminCoursesRouteImport.update({
-  id: '/courses',
-  path: '/courses',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminBlogRoute = AdminBlogRouteImport.update({
@@ -195,26 +135,16 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
   '/admin/blog': typeof AdminBlogRoute
-  '/admin/courses': typeof AdminCoursesRoute
   '/admin/current-affairs': typeof AdminCurrentAffairsRoute
   '/admin/notifications': typeof AdminNotificationsRoute
   '/admin/students': typeof AdminStudentsRoute
-  '/admin/tests': typeof AdminTestsRoute
   '/blog/$slug': typeof BlogSlugRoute
-  '/checkout/$courseSlug': typeof CheckoutCourseSlugRoute
-  '/courses/$slug': typeof CoursesSlugRoute
-  '/dashboard/courses': typeof DashboardCoursesRoute
   '/dashboard/notifications': typeof DashboardNotificationsRoute
   '/dashboard/profile': typeof DashboardProfileRoute
-  '/dashboard/tests': typeof DashboardTestsRoute
-  '/mock-tests/$slug': typeof MockTestsSlugRoute
-  '/quizzes/$slug': typeof QuizzesSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/blog/': typeof BlogIndexRoute
-  '/courses/': typeof CoursesIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/mock-tests/': typeof MockTestsIndexRoute
-  '/quizzes/': typeof QuizzesIndexRoute
+  '/news/': typeof NewsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -224,26 +154,16 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
   '/admin/blog': typeof AdminBlogRoute
-  '/admin/courses': typeof AdminCoursesRoute
   '/admin/current-affairs': typeof AdminCurrentAffairsRoute
   '/admin/notifications': typeof AdminNotificationsRoute
   '/admin/students': typeof AdminStudentsRoute
-  '/admin/tests': typeof AdminTestsRoute
   '/blog/$slug': typeof BlogSlugRoute
-  '/checkout/$courseSlug': typeof CheckoutCourseSlugRoute
-  '/courses/$slug': typeof CoursesSlugRoute
-  '/dashboard/courses': typeof DashboardCoursesRoute
   '/dashboard/notifications': typeof DashboardNotificationsRoute
   '/dashboard/profile': typeof DashboardProfileRoute
-  '/dashboard/tests': typeof DashboardTestsRoute
-  '/mock-tests/$slug': typeof MockTestsSlugRoute
-  '/quizzes/$slug': typeof QuizzesSlugRoute
   '/admin': typeof AdminIndexRoute
   '/blog': typeof BlogIndexRoute
-  '/courses': typeof CoursesIndexRoute
   '/dashboard': typeof DashboardIndexRoute
-  '/mock-tests': typeof MockTestsIndexRoute
-  '/quizzes': typeof QuizzesIndexRoute
+  '/news': typeof NewsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -256,26 +176,16 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
   '/admin/blog': typeof AdminBlogRoute
-  '/admin/courses': typeof AdminCoursesRoute
   '/admin/current-affairs': typeof AdminCurrentAffairsRoute
   '/admin/notifications': typeof AdminNotificationsRoute
   '/admin/students': typeof AdminStudentsRoute
-  '/admin/tests': typeof AdminTestsRoute
   '/blog/$slug': typeof BlogSlugRoute
-  '/checkout/$courseSlug': typeof CheckoutCourseSlugRoute
-  '/courses/$slug': typeof CoursesSlugRoute
-  '/dashboard/courses': typeof DashboardCoursesRoute
   '/dashboard/notifications': typeof DashboardNotificationsRoute
   '/dashboard/profile': typeof DashboardProfileRoute
-  '/dashboard/tests': typeof DashboardTestsRoute
-  '/mock-tests/$slug': typeof MockTestsSlugRoute
-  '/quizzes/$slug': typeof QuizzesSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/blog/': typeof BlogIndexRoute
-  '/courses/': typeof CoursesIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/mock-tests/': typeof MockTestsIndexRoute
-  '/quizzes/': typeof QuizzesIndexRoute
+  '/news/': typeof NewsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -289,26 +199,16 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/admin/blog'
-    | '/admin/courses'
     | '/admin/current-affairs'
     | '/admin/notifications'
     | '/admin/students'
-    | '/admin/tests'
     | '/blog/$slug'
-    | '/checkout/$courseSlug'
-    | '/courses/$slug'
-    | '/dashboard/courses'
     | '/dashboard/notifications'
     | '/dashboard/profile'
-    | '/dashboard/tests'
-    | '/mock-tests/$slug'
-    | '/quizzes/$slug'
     | '/admin/'
     | '/blog/'
-    | '/courses/'
     | '/dashboard/'
-    | '/mock-tests/'
-    | '/quizzes/'
+    | '/news/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -318,26 +218,16 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/admin/blog'
-    | '/admin/courses'
     | '/admin/current-affairs'
     | '/admin/notifications'
     | '/admin/students'
-    | '/admin/tests'
     | '/blog/$slug'
-    | '/checkout/$courseSlug'
-    | '/courses/$slug'
-    | '/dashboard/courses'
     | '/dashboard/notifications'
     | '/dashboard/profile'
-    | '/dashboard/tests'
-    | '/mock-tests/$slug'
-    | '/quizzes/$slug'
     | '/admin'
     | '/blog'
-    | '/courses'
     | '/dashboard'
-    | '/mock-tests'
-    | '/quizzes'
+    | '/news'
   id:
     | '__root__'
     | '/'
@@ -349,26 +239,16 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/admin/blog'
-    | '/admin/courses'
     | '/admin/current-affairs'
     | '/admin/notifications'
     | '/admin/students'
-    | '/admin/tests'
     | '/blog/$slug'
-    | '/checkout/$courseSlug'
-    | '/courses/$slug'
-    | '/dashboard/courses'
     | '/dashboard/notifications'
     | '/dashboard/profile'
-    | '/dashboard/tests'
-    | '/mock-tests/$slug'
-    | '/quizzes/$slug'
     | '/admin/'
     | '/blog/'
-    | '/courses/'
     | '/dashboard/'
-    | '/mock-tests/'
-    | '/quizzes/'
+    | '/news/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -381,14 +261,8 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   SignupRoute: typeof SignupRoute
   BlogSlugRoute: typeof BlogSlugRoute
-  CheckoutCourseSlugRoute: typeof CheckoutCourseSlugRoute
-  CoursesSlugRoute: typeof CoursesSlugRoute
-  MockTestsSlugRoute: typeof MockTestsSlugRoute
-  QuizzesSlugRoute: typeof QuizzesSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
-  CoursesIndexRoute: typeof CoursesIndexRoute
-  MockTestsIndexRoute: typeof MockTestsIndexRoute
-  QuizzesIndexRoute: typeof QuizzesIndexRoute
+  NewsIndexRoute: typeof NewsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -449,18 +323,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/quizzes/': {
-      id: '/quizzes/'
-      path: '/quizzes'
-      fullPath: '/quizzes/'
-      preLoaderRoute: typeof QuizzesIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mock-tests/': {
-      id: '/mock-tests/'
-      path: '/mock-tests'
-      fullPath: '/mock-tests/'
-      preLoaderRoute: typeof MockTestsIndexRouteImport
+    '/news/': {
+      id: '/news/'
+      path: '/news'
+      fullPath: '/news/'
+      preLoaderRoute: typeof NewsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard/': {
@@ -469,13 +336,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/dashboard/'
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof DashboardRoute
-    }
-    '/courses/': {
-      id: '/courses/'
-      path: '/courses'
-      fullPath: '/courses/'
-      preLoaderRoute: typeof CoursesIndexRouteImport
-      parentRoute: typeof rootRouteImport
     }
     '/blog/': {
       id: '/blog/'
@@ -491,27 +351,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
-    '/quizzes/$slug': {
-      id: '/quizzes/$slug'
-      path: '/quizzes/$slug'
-      fullPath: '/quizzes/$slug'
-      preLoaderRoute: typeof QuizzesSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mock-tests/$slug': {
-      id: '/mock-tests/$slug'
-      path: '/mock-tests/$slug'
-      fullPath: '/mock-tests/$slug'
-      preLoaderRoute: typeof MockTestsSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard/tests': {
-      id: '/dashboard/tests'
-      path: '/tests'
-      fullPath: '/dashboard/tests'
-      preLoaderRoute: typeof DashboardTestsRouteImport
-      parentRoute: typeof DashboardRoute
-    }
     '/dashboard/profile': {
       id: '/dashboard/profile'
       path: '/profile'
@@ -526,40 +365,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardNotificationsRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/dashboard/courses': {
-      id: '/dashboard/courses'
-      path: '/courses'
-      fullPath: '/dashboard/courses'
-      preLoaderRoute: typeof DashboardCoursesRouteImport
-      parentRoute: typeof DashboardRoute
-    }
-    '/courses/$slug': {
-      id: '/courses/$slug'
-      path: '/courses/$slug'
-      fullPath: '/courses/$slug'
-      preLoaderRoute: typeof CoursesSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/checkout/$courseSlug': {
-      id: '/checkout/$courseSlug'
-      path: '/checkout/$courseSlug'
-      fullPath: '/checkout/$courseSlug'
-      preLoaderRoute: typeof CheckoutCourseSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/blog/$slug': {
       id: '/blog/$slug'
       path: '/blog/$slug'
       fullPath: '/blog/$slug'
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/admin/tests': {
-      id: '/admin/tests'
-      path: '/tests'
-      fullPath: '/admin/tests'
-      preLoaderRoute: typeof AdminTestsRouteImport
-      parentRoute: typeof AdminRoute
     }
     '/admin/students': {
       id: '/admin/students'
@@ -582,13 +393,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminCurrentAffairsRouteImport
       parentRoute: typeof AdminRoute
     }
-    '/admin/courses': {
-      id: '/admin/courses'
-      path: '/courses'
-      fullPath: '/admin/courses'
-      preLoaderRoute: typeof AdminCoursesRouteImport
-      parentRoute: typeof AdminRoute
-    }
     '/admin/blog': {
       id: '/admin/blog'
       path: '/blog'
@@ -601,39 +405,31 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteChildren {
   AdminBlogRoute: typeof AdminBlogRoute
-  AdminCoursesRoute: typeof AdminCoursesRoute
   AdminCurrentAffairsRoute: typeof AdminCurrentAffairsRoute
   AdminNotificationsRoute: typeof AdminNotificationsRoute
   AdminStudentsRoute: typeof AdminStudentsRoute
-  AdminTestsRoute: typeof AdminTestsRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminBlogRoute: AdminBlogRoute,
-  AdminCoursesRoute: AdminCoursesRoute,
   AdminCurrentAffairsRoute: AdminCurrentAffairsRoute,
   AdminNotificationsRoute: AdminNotificationsRoute,
   AdminStudentsRoute: AdminStudentsRoute,
-  AdminTestsRoute: AdminTestsRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface DashboardRouteChildren {
-  DashboardCoursesRoute: typeof DashboardCoursesRoute
   DashboardNotificationsRoute: typeof DashboardNotificationsRoute
   DashboardProfileRoute: typeof DashboardProfileRoute
-  DashboardTestsRoute: typeof DashboardTestsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
-  DashboardCoursesRoute: DashboardCoursesRoute,
   DashboardNotificationsRoute: DashboardNotificationsRoute,
   DashboardProfileRoute: DashboardProfileRoute,
-  DashboardTestsRoute: DashboardTestsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
 
@@ -651,14 +447,8 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   SignupRoute: SignupRoute,
   BlogSlugRoute: BlogSlugRoute,
-  CheckoutCourseSlugRoute: CheckoutCourseSlugRoute,
-  CoursesSlugRoute: CoursesSlugRoute,
-  MockTestsSlugRoute: MockTestsSlugRoute,
-  QuizzesSlugRoute: QuizzesSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
-  CoursesIndexRoute: CoursesIndexRoute,
-  MockTestsIndexRoute: MockTestsIndexRoute,
-  QuizzesIndexRoute: QuizzesIndexRoute,
+  NewsIndexRoute: NewsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

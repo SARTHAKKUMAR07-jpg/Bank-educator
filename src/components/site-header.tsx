@@ -10,10 +10,7 @@ import {
 
 const nav = [
   { to: "/", label: "Home" },
-  { to: "/courses", label: "Courses" },
-  { to: "/mock-tests", label: "Mock Tests" },
-  { to: "/quizzes", label: "Quizzes" },
-  { to: "/current-affairs", label: "Current Affairs" },
+  { to: "/news", label: "News" },
   { to: "/blog", label: "Blog" },
   { to: "/about", label: "About" },
 ];
@@ -24,13 +21,11 @@ export function SiteHeader() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="grid h-9 w-9 place-items-center rounded-lg hero-gradient">
-            <Landmark className="h-5 w-5 text-gold" />
-          </span>
-          <span className="font-display text-xl leading-none">
+    <header className="sticky top-0 z-50 border-b border-border/40 bg-background/90 backdrop-blur-md shadow-[0_4px_20px_-10px_rgba(0,0,0,0.1)] transition-all duration-300">
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 md:gap-6 md:px-6 py-4">
+        <Link to="/" className="flex items-center gap-2 md:gap-3 shrink-0 group">
+          <Landmark className="h-8 w-8 md:h-10 md:w-10 text-primary shrink-0 group-hover:scale-105 transition-transform duration-300" />
+          <span className="font-display text-xl md:text-2xl leading-none font-bold tracking-tight">
             Bank <span className="text-gold">Educator</span>
           </span>
         </Link>
@@ -42,7 +37,7 @@ export function SiteHeader() {
               <Link
                 key={n.to}
                 to={n.to}
-                className={`px-3 py-2 text-sm font-medium rounded-md transition ${active ? "text-primary bg-secondary" : "text-foreground/75 hover:text-primary hover:bg-secondary/60"}`}
+                className={`relative px-4 py-2 text-[15px] font-semibold rounded-full transition-all duration-300 overflow-hidden group ${active ? "text-primary bg-primary/10" : "text-foreground/80 hover:text-primary hover:bg-muted"}`}
               >
                 {n.label}
               </Link>
@@ -51,7 +46,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden md:flex items-center gap-2">
-          {user ? (
+          {user && (
             <>
               <Button variant="ghost" size="icon" asChild>
                 <Link to="/dashboard/notifications" aria-label="Notifications">
@@ -89,13 +84,6 @@ export function SiteHeader() {
                 </DropdownMenuContent>
               </DropdownMenu>
             </>
-          ) : (
-            <>
-              <Button variant="ghost" asChild><Link to="/login">Log in</Link></Button>
-              <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
-                <Link to="/signup">Get Started</Link>
-              </Button>
-            </>
           )}
         </div>
 
@@ -113,15 +101,10 @@ export function SiteHeader() {
               </Link>
             ))}
             <div className="border-t border-border/60 mt-2 pt-3 flex flex-col gap-2">
-              {user ? (
+              {user && (
                 <>
                   <Button variant="outline" asChild><Link to="/dashboard" onClick={() => setOpen(false)}>Dashboard</Link></Button>
                   <Button onClick={() => { logout(); setOpen(false); }} variant="ghost">Log out</Button>
-                </>
-              ) : (
-                <>
-                  <Button variant="outline" asChild><Link to="/login" onClick={() => setOpen(false)}>Log in</Link></Button>
-                  <Button asChild><Link to="/signup" onClick={() => setOpen(false)}>Get Started</Link></Button>
                 </>
               )}
             </div>

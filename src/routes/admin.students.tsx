@@ -24,10 +24,10 @@ function AdminStudents() {
       <div className="mt-4 flex justify-between items-center"><Input placeholder="Search…" className="max-w-xs" value={q} onChange={e=>setQ(e.target.value)} /><div className="text-sm text-muted-foreground">{list.length} of {students.length}</div></div>
       <Card className="mt-4 overflow-hidden py-0">
         <table className="w-full text-sm">
-          <thead className="bg-muted text-left"><tr><th className="p-3">Name</th><th className="p-3">Email</th><th className="p-3">Target</th><th className="p-3">Courses</th><th className="p-3">Joined</th></tr></thead>
+          <thead className="bg-muted text-left"><tr><th className="p-3">Name</th><th className="p-3">Email</th><th className="p-3">Target</th><th className="p-3">Joined</th></tr></thead>
           <tbody>
             {list.map(s => (
-              <tr key={s.id} className="border-t"><td className="p-3 font-medium">{s.name}</td><td className="p-3">{s.email}</td><td className="p-3"><Badge variant="outline">{s.exam}</Badge></td><td className="p-3">{s.enrolled}</td><td className="p-3">{s.joined}</td></tr>
+              <tr key={s.id} className="border-t"><td className="p-3 font-medium">{s.name}</td><td className="p-3">{s.email}</td><td className="p-3"><Badge variant="outline">{s.exam}</Badge></td><td className="p-3">{s.joined}</td></tr>
             ))}
           </tbody>
         </table>
